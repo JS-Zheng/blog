@@ -27,12 +27,8 @@ class Computer implements GameInjector {
     public Computer(IGame game, Integer money) {
         this.game = game;  // 依賴注入
 
-        System.out.println("此遊戲需要 "+money+"元");
+        System.out.println("此遊戲需要 " + money + "元");
     }
-
-
-
-
 
 
     // 設值方法注入 (Setter Injection)
