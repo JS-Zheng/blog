@@ -1,0 +1,36 @@
+@startuml
+
+
+together {
+ class 英雄聯盟
+ class 世紀帝國
+ class 爆爆王
+}
+
+class Computer
+
+interface IGame{
++play()
+}
+
+class 英雄聯盟{
++play()
+}
+class 世紀帝國{
++play()
+}
+class 爆爆王{
++play()
+}
+
+
+Computer .> IGame
+
+英雄聯盟 .|> IGame
+世紀帝國 .|> IGame
+爆爆王 .|> IGame
+
+
+
+
+@enduml
