@@ -1,0 +1,45 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+
+together {
+
+class Client
+
+class invoker
+
+interface 指令{
++ Execute()
+}
+
+
+
+
+}
+
+together {
+
+class Receiver{
++ Action()
+}
+
+class ConcreteCommand{
+- receiver : Receiver
+
++ Execute()
+}
+
+
+}
+note right of ConcreteCommand : Execute(): receiver->Action();
+
+Client ..> ConcreteCommand
+Client -> Receiver
+
+invoker o- 指令
+
+ConcreteCommand .|>  指令
+Receiver <- ConcreteCommand : "receiver"
+
+@enduml

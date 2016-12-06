@@ -1,0 +1,42 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+
+together {
+
+class 餐廳
+
+class 服務生
+
+interface 指令{
++ Execute()
+}
+
+
+}
+
+together {
+
+class 廚師{
++ Action()
+}
+
+class 點牛排指令{
+- cook : 廚師
+
++ Execute()
+}
+
+
+}
+
+餐廳 ..> 點牛排指令
+餐廳 -> 廚師
+
+服務生 o- 指令
+
+點牛排指令 .|>  指令
+廚師 <- 點牛排指令 : "cook"
+
+@enduml
