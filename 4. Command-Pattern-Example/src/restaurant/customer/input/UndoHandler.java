@@ -11,7 +11,7 @@ public class UndoHandler implements Handler {
     @Override
     public void handle(餐廳 restaurant) {
         服務生 waiter = restaurant.getWaiter();
-        waiter.undo(); // 復原上一個『執行過的』指令
+        waiter.undo(); // 復原上一個『執行過的』命令
     }
 }
 

@@ -9,7 +9,7 @@ class Client
 
 class invoker
 
-interface 指令{
+interface Command{
 + Execute()
 }
 
@@ -37,9 +37,9 @@ note right of ConcreteCommand : Execute(): receiver->Action();
 Client ..> ConcreteCommand
 Client -> Receiver
 
-invoker o- 指令
+invoker o- Command
 
-ConcreteCommand .|>  指令
+ConcreteCommand .|>  Command
 Receiver <- ConcreteCommand : "receiver"
 
 @enduml

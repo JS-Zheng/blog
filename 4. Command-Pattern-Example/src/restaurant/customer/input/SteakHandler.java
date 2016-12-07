@@ -12,8 +12,8 @@ public class SteakHandler implements Handler {
     public void handle(餐廳 restaurant) {
         服務生 waiter = restaurant.getWaiter();
         廚師 cook = restaurant.getCook();
-        // 準備指令
-        指令 command = new 點牛排指令(cook);
+        // 準備命令
+        命令 command = new 點牛排命令(cook);
         waiter.addOrder(command);
     }
 }

@@ -14,7 +14,7 @@ public class 廚師 implements Serializable {
     }
 
     public void cookSteak() {
-        System.out.println(" 廚師: " + name + "牛排來嚕~");
+        System.out.println("廚師: " + name + "牛排來嚕~");
     }
 
     public void cookPork() {

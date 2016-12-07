@@ -39,12 +39,12 @@ public class 餐廳 implements Runnable {
         while (opening && hasCustomer) {
 
             System.out.println();
-            System.out.println("請輸入指令: ");
+            System.out.println("請輸入命令: ");
             System.out.println("[1]牛排  [2]豬排");
             System.out.println("[ok]點餐完畢 [check]確認菜單內容 [undo]退貨上一個'收到的'餐點  [exit]離開");
             String input = scanner.next();
 
-            handleInput(input); // 處理顧客輸入的指令
+            handleInput(input); // 處理顧客輸入的命令
         }
 
 

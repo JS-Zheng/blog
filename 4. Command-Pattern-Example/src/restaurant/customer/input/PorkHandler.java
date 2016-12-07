@@ -14,8 +14,8 @@ public class PorkHandler implements Handler {
         服務生 waiter = restaurant.getWaiter();
         廚師 cook = restaurant.getCook();
 
-        // 準備指令 並 設置廚師
-        指令 command = new 點豬排指令(cook);
+        // 準備命令 並 設置廚師
+        命令 command = new 點豬排命令(cook);
         waiter.addOrder(command);
     }
 }

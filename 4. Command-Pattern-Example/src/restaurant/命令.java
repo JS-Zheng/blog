@@ -5,11 +5,11 @@ import java.io.Serializable;
 /**
  * Created by zhengzhongsheng on 2016/12/4.
  */
-public abstract class 指令 implements Cloneable, Serializable {
+public abstract class 命令 implements Cloneable, Serializable {
 
     protected 廚師 cook;
 
-    public 指令(廚師 cook) {
+    public 命令(廚師 cook) {
         this.cook = cook;
     }
 
