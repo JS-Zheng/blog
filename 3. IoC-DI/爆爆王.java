@@ -1,7 +1,7 @@
 /**
  * Created by zhengzhongsheng on 2016/11/22.
  */
-class 爆爆王 implements IGame {
+class 爆爆王 implements Game {
 
     @Override
     public void play() {

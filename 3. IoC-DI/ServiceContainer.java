@@ -157,15 +157,15 @@ public class ServiceContainer {
                                         // 嘗試 由 bindings 取得 是否有此綁定
                                         // 有的話 就進入遞迴
                                         //
-                                        // Ex: 綁定 container.bind(Computer.class, IGame.class);
+                                        // Ex: 綁定 container.bind(Computer.class, Game.class);
 
                                         /*
                                            嘗試 由 bindings 取得 是否有此綁定
                                            有的話 就進入遞迴
 
-                                           Ex: 綁定 container.bind(Computer.class, IGame.class);
-                                           但是 建構元中 需要的是 IGame 而非 IGame.class
-                                           去檢查 bindings 中 是否有綁定 (IGame.class, XXX.class);
+                                           Ex: 綁定 container.bind(Computer.class, Game.class);
+                                           但是 建構元中 需要的是 Game 而非 Game.class
+                                           去檢查 bindings 中 是否有綁定 (Game.class, XXX.class);
                                            取得具體產品之實例
                                          */
                                         List mParamList = (List) bindings.get(paramClz);

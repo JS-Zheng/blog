@@ -9,7 +9,7 @@ together {
 
 class Computer
 
-interface IGame{
+interface Game{
 +play()
 }
 
@@ -24,11 +24,11 @@ class 爆爆王{
 }
 
 
-Computer .> IGame
+Computer .> Game
 
-英雄聯盟 .|> IGame
-世紀帝國 .|> IGame
-爆爆王 .|> IGame
+英雄聯盟 .|> Game
+世紀帝國 .|> Game
+爆爆王 .|> Game
 
 
 

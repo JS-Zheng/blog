@@ -3,5 +3,5 @@
  */ // 遊戲注入者
 // 可以規範： 任何需要 "遊戲" 的模組 都必須實做此介面
 interface GameInjector {
-    void injectGame(IGame game);
+    void injectGame(Game game);
 }
