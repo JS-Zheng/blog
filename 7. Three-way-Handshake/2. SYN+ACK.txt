@@ -1,0 +1,18 @@
+2. Server to Client [SYN+ACK] example:
+
+Transmission Control Protocol, Src Port: 80, Dst Port: 56322, Seq: 0, Ack: 1, Len: 0
+    Source Port: 80
+    Destination Port: 56322
+    [Stream index: 3]
+    [TCP Segment Len: 0]
+    Sequence number: 0    (relative sequence number)
+    Acknowledgment number: 1    (relative ack number)
+    Header Length: 40 bytes
+    Flags: 0x012 (SYN, ACK)
+    Window size value: 26847
+    [Calculated window size: 26847]
+    Checksum: 0x1efd [unverified]
+    [Checksum Status: Unverified]
+    Urgent pointer: 0
+    Options: (20 bytes), Maximum segment size, SACK permitted, Timestamps, No-Operation (NOP), Window scale
+    [SEQ/ACK analysis]

@@ -1,0 +1,17 @@
+1. Client to Server [SYN] example:
+
+Transmission Control Protocol, Src Port: 56322, Dst Port: 80, Seq: 0, Len: 0
+    Source Port: 56322
+    Destination Port: 80
+    [Stream index: 3]
+    [TCP Segment Len: 0]
+    Sequence number: 0    (relative sequence number)
+    Acknowledgment number: 0
+    Header Length: 44 bytes
+    Flags: 0x002 (SYN)
+    Window size value: 65535
+    [Calculated window size: 65535]
+    Checksum: 0x465f [unverified]
+    [Checksum Status: Unverified]
+    Urgent pointer: 0
+    Options: (24 bytes), Maximum segment size, No-Operation (NOP), Window scale, No-Operation (NOP), No-Operation (NOP), Timestamps, SACK permitted, End of Option List (EOL)

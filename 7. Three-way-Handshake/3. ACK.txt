@@ -1,0 +1,19 @@
+3. Client to Server [ACK] example:
+
+Transmission Control Protocol, Src Port: 56322, Dst Port: 80, Seq: 1, Ack: 1, Len: 0
+    Source Port: 56322
+    Destination Port: 80
+    [Stream index: 3]
+    [TCP Segment Len: 0]
+    Sequence number: 1    (relative sequence number)
+    Acknowledgment number: 1    (relative ack number)
+    Header Length: 32 bytes
+    Flags: 0x010 (ACK)
+    Window size value: 4120
+    [Calculated window size: 131840]
+    [Window size scaling factor: 32]
+    Checksum: 0xa5cb [unverified]
+    [Checksum Status: Unverified]
+    Urgent pointer: 0
+    Options: (12 bytes), No-Operation (NOP), No-Operation (NOP), Timestamps
+    [SEQ/ACK analysis]
