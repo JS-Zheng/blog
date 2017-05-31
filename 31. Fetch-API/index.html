@@ -3,6 +3,7 @@
 <head>
     <title>Fetch API Demo (Vue)</title>
     <meta charset="utf-8">
+    <script src="lib/polyfill.min.js"></script>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="//cdn.polyfill.io/v2/polyfill.min.js?features=fetch"></script>
     <link rel="stylesheet" href="css/style.css">
@@ -34,34 +35,6 @@
 </div>
 
 
-<script>
-
-    var vm = new Vue({
-                el: "#container",
-                data: {
-                    res: null,
-                    loading: true,
-                    error: null
-                },
-                components: {
-                    "gank-img": {
-                        props: ['url'],
-                        template: '<img class="gank-img" :src="url">'
-                    }
-                },
-                created: async function () {
-                    try {
-                        // 等待獲取回應
-                        let res = await fetch('https://gank.io/api/random/data/福利/20');
-                        // 等待 parse json
-                        this.res = await res.json();
-                        this.loading = false;
-                    } catch (e) {
-                        this.error = e;
-                    }
-                }
-            })
-            ;
-</script>
+<script src="lib/vm.js"></script>
 </body>
 </html>
