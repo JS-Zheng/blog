@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blob Demo</title>
+    <meta charset="utf-8">
+</head>
+<body>
+<script>
+    try {
+        // 實例 XMLHttpRequest 物件
+        var xhr = new XMLHttpRequest();
+        
+        xhr.open("GET", "its-you.jpg");
+
+        xhr.responseType = 'blob';
+
+        // 非同步取得回應
+        xhr.onload = function () {
+
+            let blob = xhr.response;
+            let img = document.createElement("img");
+            let link = document.createElement("a");
+
+            link.innerHTML = "Download"; // 下載提示文字
+            link.download = "its-you.jpg"; // 檔案名稱
+
+            // 建立 blob URI (Object URI)
+            var blobUri = window.URL.createObjectURL(blob);
+
+            img.src = blobUri;
+            link.href = blobUri;
+
+            // 新增 img 與 a 元素至頁面
+            document.body.appendChild(img);
+            document.body.appendChild(link);
+        };
+
+        xhr.send(null);
+
+    } catch (e) {
+        console.error(e);
+    }
+</script>
+
+</body>
+</html>

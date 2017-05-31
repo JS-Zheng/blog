@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>POST async/await Demo</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<script>
+    // Not working, just Demo.
+    async function post(url) {
+        try {
+            var res = await $.post(url, {name: "勝", city: "Taipei"});
+            console.log("success");
+            document.body.innerHTML = res;
+
+        } catch (jqXHR) {
+            console.error(jqXHR.statusText);
+        }
+        console.log("finished");
+    }
+
+    post("demo_test_post.asp");
+
+</script>
+
+</body>
+</html>

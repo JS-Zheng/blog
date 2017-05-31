@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>POST async/await Demo</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<script>
+    // Not working, just Demo.
+    var setting = {
+        url: "demo_test_post.asp",
+        method: "PUT",
+        contentType: "application/json",
+        data: JSON.stringify({
+            "name": "Jason",
+            "id": 1,
+            "handsome": true
+        })
+    };
+
+    ajax(setting);
+
+
+    async function ajax(setting) {
+        try {
+            let res = await $.ajax(setting);
+            console.log("success");
+            console.log(res);
+
+        } catch (jqXHR) {
+            console.error(jqXHR.statusText);
+        }
+        console.log("finished");
+    }
+</script>
+</body>
+</html>

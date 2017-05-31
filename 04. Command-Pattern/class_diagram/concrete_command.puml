@@ -1,8 +1,0 @@
-@startuml
-
-interface Command{
-+ do()
-+ undo()
-}
-
-@enduml

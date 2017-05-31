@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Async/Await Demo</title>
+    <meta charset="utf-8">
+</head>
+<body>
+<script>
+
+    console.log("-----測試開始-----");
+    test();
+    console.log("測試結束了 ?");
+
+
+    async function test() {
+        console.log("測試 1. 拉人成功:");
+        let test = await 你聽過安利嗎(true);
+        console.log("Result: " + test);
+
+        console.log("-----------------\n");
+
+        console.log("測試 2. 拉人失敗:");
+        test = await 你聽過安利嗎(false);
+        console.log("Result: " + test);
+    }
+
+
+    function 你聽過安利嗎(flag) {
+        return new Promise(function (resolve, reject) {
+
+            var value = "一起年薪百萬啦 !";
+            var reason = "先來用我家 賀寶寶奶昔 啦 !";
+
+            if (flag) {
+                // 解析/接受/完成 Promise 並回傳 value
+                resolve(value)
+            } else {
+                // 拒絕 Promise 並回傳 拒絕 reason 理由
+                reject(reason);
+            }
+        })
+    }
+</script>
+
+</body>
+</html>

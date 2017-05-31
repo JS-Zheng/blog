@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Get Demo</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<script>
+
+    // get 方法 回傳實作了 Promise 的 jqXHR 物件
+    $.get("https://gank.io/api/random/data/福利/20")
+            .done(res => jsonHandler(res));
+
+
+    function jsonHandler(response) {
+        let data = response.results;
+        // 建立緩衝的文件片段 docFrag
+        let docFrag = document.createDocumentFragment();
+        for (var i = 0, l = data.length; i < l; i++) {
+            var url = data[i].url;
+            var img = document.createElement("img");
+            img.src = url;
+            img.width = 300;
+            // 將 img 添加至 docFrag
+            docFrag.appendChild(img);
+        }
+        // 將含有多個 img 的 docFrag
+        // 一次新增至 HTML 的 body 中
+        document.body.appendChild(docFrag);
+    }
+</script>
+</body>
+</html>

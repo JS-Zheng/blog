@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send Unicode Demo</title>
+    <meta charset="utf-8">
+</head>
+<body>
+<script>
+
+    // Not working, just Demo.
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "test.php");
+    xhr.onload = function () {
+        document.body.innerHTML = xhr.responseText;
+    };
+    var bytes = new Uint8Array(256);
+    var unicode = [];
+
+    // 初始化為 0、1、2、3...254、255
+    for (var i = 0, l = bytes.length; i < l; i++) {
+        bytes[i] = i & 0xff;
+
+        // 僅為測試 Unicode 用
+        unicode[i] = String.fromCharCode(i);
+    }
+
+    // 印出測試結果
+    console.log(unicode);
+
+    xhr.send(bytes.buffer);
+
+</script>
+</body>
+</html>

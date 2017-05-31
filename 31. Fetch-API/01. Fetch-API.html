@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch API Demo</title>
+    <script src="//cdn.polyfill.io/v2/polyfill.min.js?features=fetch"></script>
+</head>
+<body>
+<script>
+
+    (async function fetchGank() {
+        try {
+            let res = await fetch('https://gank.io/api/random/data/福利/20');
+
+            if (res.ok) {
+                // 等待 parse json
+                let data = await res.json();
+
+                jsonHandler(data);
+
+            } else {
+                let text = await res.text();
+                console.log(text);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }());
+
+
+    function jsonHandler(response) {
+        let data = response.results;
+        let docFrag = document.createDocumentFragment();
+        for (var i = 0, l = data.length; i < l; i++) {
+            var url = data[i].url;
+            var img = document.createElement("img");
+            img.src = url;
+            img.width = 300;
+            docFrag.appendChild(img);
+        }
+        document.body.appendChild(docFrag);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Clone Demo</title>
+    <script src="//cdn.polyfill.io/v2/polyfill.min.js?features=fetch"></script>
+</head>
+<body>
+<script>
+
+    (async function WillSuccess() {
+
+        let res = await fetch('https://gank.io/api/random/data/福利/20');
+
+        // 製作 Response 物件副本
+        let resCopy = res.clone();
+
+        let data = await res.json();
+        let text = await resCopy.text();
+
+        console.log(data);
+        console.log(text);
+    }());
+
+
+    (async function willError() {
+
+        let res = await fetch('https://gank.io/api/random/data/福利/20');
+
+        let data = await res.json();
+        let text = await res.text();
+
+        console.log(data);
+        console.log(text);
+    }());
+</script>
+</body>
+</html>

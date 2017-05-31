@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>XHR OverrideMimeType Demo</title>
+    <title>OverrideMimeType Demo</title>
     <meta charset="utf-8">
 </head>
 <body>
@@ -9,30 +9,22 @@
 
     try {
         // 實例 XMLHttpRequest 物件
-        var request = new XMLHttpRequest();
-
-        /*
-         * {string} 請求方法 (method)
-         * {string} 目標 url
-         * {boolean} 非同步 [async]
-         * {string} 使用者 [user]
-         * {string} 密碼 [password]
-         */
-        request.open("GET", "only-you.jpg");
+        var xhr = new XMLHttpRequest();
+        
+        xhr.open("GET", "its-you.jpg");
 
         // 複寫回應的 Content-Type
-        request.overrideMimeType('text/plain; charset=x-user-defined');
+        xhr.overrideMimeType('text/plain; charset=x-user-defined');
 
         // 非同步取得回應
-        request.onload = function () {
+        xhr.onload = function () {
 
-            var response = request.responseText;
-
-            var img = document.createElement("img");
-            var binary = "";
+            let response = xhr.responseText;
+            let img = document.createElement("img");
+            let data = "";
+            
             for (var i = 0; i < response.length; i += 1) {
-
-
+                
                 /*
                  * 0xff (16 進制) = 255 (10 進制)
                  * = 0b11111111 (2 進制)
@@ -48,18 +40,19 @@
                  *
                  * 常結合 0xff，做 位元組 遮罩
                  */
-                var u = response.charCodeAt(i) & 0xff;
+                let u = response.charCodeAt(i) & 0xff;
 
-                binary += String.fromCharCode(u);
+                data += String.fromCharCode(u);
             }
 
-            img.src = "data:image/jpeg;base64," + window.btoa(binary);
+            // 將資料以 base64 編碼為 Data URI
+            img.src = "data:image/jpeg;base64," + window.btoa(data);
 
             // 新增 img 元素至頁面
             document.body.appendChild(img);
         };
 
-        request.send(null);
+        xhr.send(null);
 
     } catch (e) {
         console.error(e);

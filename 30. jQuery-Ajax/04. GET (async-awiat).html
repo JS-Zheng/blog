@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Get (Async/Await) Demo</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<script>
+
+    // 使用關鍵字 async 宣告 非同步函式
+    async function enjoy() {
+        // 等待獲取回應
+        var res = await $.get("https://gank.io/api/random/data/福利/20");
+
+        // 回應 (Promise) 完成時，自動執行此行
+        jsonHandler(res)
+    }
+
+    enjoy();
+
+
+    function jsonHandler(response) {
+        let data = response.results;
+        let docFrag = document.createDocumentFragment();
+        for (var i = 0, l = data.length; i < l; i++) {
+            var url = data[i].url;
+            var img = document.createElement("img");
+            img.src = url;
+            img.width = 300;
+            docFrag.appendChild(img);
+        }
+        document.body.appendChild(docFrag);
+    }
+</script>
+</body>
+</html>

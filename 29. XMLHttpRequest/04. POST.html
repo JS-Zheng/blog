@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Post Demo</title>
+    <meta charset="utf-8">
+    <script src="encodeFormData.js"></script>
+</head>
+<body>
+<script>
+    // Not working, just Demo.
+    var payload = {name: "勝", city: "Taipei"};
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "demo_test_post.asp");
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    xhr.onload = function () {
+        document.body.innerHTML = xhr.responseText;
+    };
+    var encodedData = encodeFormData(payload);
+
+    xhr.send(encodedData);
+</script>
+</body>
+</html>

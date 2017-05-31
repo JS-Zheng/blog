@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fetch API Demo (Vue)</title>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="//cdn.polyfill.io/v2/polyfill.min.js?features=fetch"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<div id="container">
+    <h1>Fetch API Demo</h1>
+    <a href="https://github.com/Jasonnn331/blog/tree/master/31.%20Fetch-API">
+        <img src="img/GitHub-Mark.png">View on GitHub</a>
+
+    <transition name="slide-fade">
+        <div v-if="loading">
+            <div class="sk-wave ab-center">
+                <div class="sk-rect sk-rect1"></div>
+                <div class="sk-rect sk-rect2"></div>
+                <div class="sk-rect sk-rect3"></div>
+                <div class="sk-rect sk-rect4"></div>
+                <div class="sk-rect sk-rect5"></div>
+            </div>
+        </div>
+        <h1 v-else-if="error != null">載入失敗，請重新整理 :'(</h1>
+        <div v-else>
+            <gank-img v-for="(result,index) in res.results" :key="index" :url="result.url"></gank-img>
+        </div>
+    </transition>
+
+    <footer v-if="!loading">Loading animation by <a href="http://tobiasahlin.com/spinkit/">Spinkit</a></footer>
+</div>
+
+
+<script>
+
+    var vm = new Vue({
+                el: "#container",
+                data: {
+                    res: null,
+                    loading: true,
+                    error: null
+                },
+                components: {
+                    "gank-img": {
+                        props: ['url'],
+                        template: '<img class="gank-img" :src="url">'
+                    }
+                },
+                created: async function () {
+                    try {
+                        // 等待獲取回應
+                        let res = await fetch('https://gank.io/api/random/data/福利/20');
+                        // 等待 parse json
+                        this.res = await res.json();
+                        this.loading = false;
+                    } catch (e) {
+                        this.error = e;
+                    }
+                }
+            })
+            ;
+</script>
+</body>
+</html>

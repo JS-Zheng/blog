@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Promise Chain Demo</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<script>
+
+    // 請求成功則顯示: "success" 與 "complete"，不會顯示 "errorX" ;
+
+    // 請求失敗則顯示: "error1" 與 "error2" 與 "complete"，不會顯示 "success" !
+    $.get("qq")
+            .fail(function () {
+                alert("error1");
+            })
+            .fail(function () {
+                alert("error2");
+            })
+            .done(function () {
+                alert("success");
+            })
+            .always(function () {
+                alert("complete");
+            });
+</script>
+</body>
+</html>

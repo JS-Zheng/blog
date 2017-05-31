@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajax Demo</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<script>
+    // Not working, just Demo.
+    $.ajax({
+        url: "user.php",
+        method: "PUT",
+        contentType: "application/json",
+        data: JSON.stringify({
+            "name": "Jason",
+            "id": 1,
+            "handsome": true
+        })
+    })
+            .done(function (res, textStatus, jqXHR) {
+                console.log("success");
+                console.log(res);
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+            })
+            .always(function () {
+                console.log("finished");
+            });
+</script>
+
+</body>
+</html>

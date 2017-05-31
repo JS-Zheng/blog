@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Post Demo</title>
+    <meta charset="UTF-8">
+    <script src="//cdn.polyfill.io/v2/polyfill.min.js?features=fetch"></script>
+</head>
+<body>
+<script>
+    (async function post() {
+        try {
+
+            // 設置表頭欄位 (以一個客製化表頭為例)
+            var headers = new Headers({'x-just-test': 'This is a test.'});
+            headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+            // 準備 資料酬載 (Payload)
+            var data = {name: "勝", city: "Taipei"};
+            // 以 application/x-www-form-urlencoded 的內容種類送出
+            // 酬載 (Payload) 需使用百分比編碼
+            var encodedData = encodeFormData(data);
+
+            // 請求參數 init:
+            //
+            // 請求方法 POST
+            // 設置表頭
+            // 將編碼後的酬載 置於訊息主體 (Message Body) 中
+            var myInit = {
+                method: 'POST',
+                headers: headers,
+                body: encodedData
+            };
+
+            // 實例請求 -- Request，設置 目標 URI 與 請求參數 init
+            var myRequest = new Request('demo_test_post.asp', myInit);
+
+            // 非同步執行 fetch
+            let res = await fetch(myRequest);
+
+            // 判斷回應狀態碼
+            if (res.ok) {
+
+                alert(await res.text());
+
+            } else {
+                let text = await res.text();
+                console.log(text);
+            }
+
+        } catch (e) {
+            console.log(e);
+        }
+    }());
+
+
+    function encodeFormData(data) {
+        if (!data) return "";    // Always return a string
+        var pairs = [];          // To hold name=value pairs
+        for (var name in data) {                                  // For each name
+            if (!data.hasOwnProperty(name)) continue;            // Skip inherited
+            if (typeof data[name] === "function") continue;      // Skip methods
+            var value = data[name].toString();                   // Value as string
+            name = encodeURIComponent(name.replace(" ", "+"));   // Encode name
+            value = encodeURIComponent(value.replace(" ", "+")); // Encode value
+            pairs.push(name + "=" + value);   // Remember name=value pair
+        }
+        return pairs.join('&'); // Return joined pairs separated with &
+    }
+</script>
+</body>
+</html>

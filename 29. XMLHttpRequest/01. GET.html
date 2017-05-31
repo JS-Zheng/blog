@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>XMLHttpRequest Basic Demo</title>
+    <title>GET Demo</title>
     <meta charset="utf-8">
 </head>
 <body>
@@ -22,75 +22,70 @@
 
     try {
         // 實例 XMLHttpRequest 物件
-        var request = new XMLHttpRequest();
+        var xhr = new XMLHttpRequest();
 
         /*
          * {string} 請求方法 (method)
          * {string} 目標 url
-         * {boolean} 非同步 [async]
-         * {string} 使用者 [user]
-         * {string} 密碼 [password]
+         * {boolean} 非同步 [async] -- 可選
+         * {string} 使用者 [user] -- 可選
+         * {string} 密碼 [password] -- 可選
          */
-        request.open("GET", "https://gank.io/api/random/data/福利/20");
+        xhr.open("GET", "https://gank.io/api/random/data/福利/20");
 
         // 非同步取得回應
-        request.onload = function () {
+        xhr.onload = function () {
 
             // 取得回應的 Content-Type 表頭欄位
             // 以決定如何處理回應
-            var type = request.getResponseHeader("Content-Type");
+            var type = xhr.getResponseHeader("Content-Type");
 
             // 建構元 (strategy, response)
             var handler;
 
             // 使用簡易的 正規表達式，判斷媒體類型
             if (type.match(/^application\/json/)) {
-                handler = new Handler(jsonHandler, JSON.parse(request.responseText));
+                handler = new Handler(jsonHandler, JSON.parse(xhr.responseText));
             } else if (type.match(/^application\/xml/)) {
-                handler = new Handler(xmlHandler, request.responseXML);
+                handler = new Handler(textHandler, xhr.responseXML);
             } else {
-                handler = new Handler(textHandler, request.responseText);
+                handler = new Handler(textHandler, xhr.responseText);
             }
 
             handler.handleResponse();
         };
 
-        request.send(null);
+        xhr.send(null);
 
     } catch (e) {
         console.error(e);
     }
 
 
-    // 敷衍 的處理 JSON 回應
+    // 簡易處理 JSON 回應
     function jsonHandler(response) {
-
-        var data = response.results;
+        let data = response.results;
+        // 建立緩衝的文件片段 docFrag
+        let docFrag = document.createDocumentFragment();
         for (var i = 0, l = data.length; i < l; i++) {
             var url = data[i].url;
             var img = document.createElement("img");
             img.src = url;
             img.width = 300;
-
-            // 新增 img 元素至頁面
-            document.body.appendChild(img);
+            // 將 img 添加至 docFrag
+            docFrag.appendChild(img);
         }
+        // 將含有多個 img 的 docFrag
+        // 一次新增至 HTML 的 body 中
+        document.body.appendChild(docFrag);
     }
 
-    // 超級敷衍 的處理 文字 回應
+    // 簡易處理 文字 回應
     function textHandler(response) {
         // 新增回應文字至頁面
         document.body.innerHTML = response;
     }
-
-    // 超級敷衍 的處理 XML 回應
-    function xmlHandler(response) {
-        // 新增回應文字至頁面
-        document.body.innerHTML = response;
-    }
-
-
+    
 </script>
-
 </body>
 </html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>XHR to Promise Demo</title>
+    <meta charset="utf-8">
+    <script src="//cdn.polyfill.io/v2/polyfill.min.js?features=fetch"></script>
+</head>
+<body>
+
+<script>
+
+    (async function enjoy() {
+        let res = await GET('https://gank.io/api/random/data/福利/20');
+        let data = JSON.parse(res);
+        jsonHandler(data)
+    }());
+
+
+    function GET(url) {
+
+        // 使用 Promise() 建構元 建立 promise 物件
+        return new Promise(function (resolve, reject) {
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url);
+
+            xhr.onload = function () {
+                if (200 <= xhr.status && xhr.status <= 299) {
+
+                    // 解析/接受/完成 Promise 並回傳 回應 value
+                    resolve(xhr.responseText);
+                }
+                else {
+                    // 拒絕 Promise 並回傳 拒絕 reason 理由
+                    reject(Error(xhr.statusText));
+                }
+            };
+
+            xhr.onerror = function () {
+                reject(Error("Network error."));
+            };
+
+            xhr.send();
+        });
+    }
+
+    function jsonHandler(response) {
+        let data = response.results;
+        let docFrag = document.createDocumentFragment();
+        for (var i = 0, l = data.length; i < l; i++) {
+            var url = data[i].url;
+            var img = document.createElement("img");
+            img.src = url;
+            img.width = 300;
+            docFrag.appendChild(img);
+        }
+        document.body.appendChild(docFrag);
+    }
+
+</script>
+</body>
+</html>
