@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Content-Encoding Request Demo</title>
+    <script src="//cdn.polyfill.io/v2/polyfill.min.js?features=fetch"></script>
+    <script src="pako_deflate.min.js"></script>
+</head>
+<body>
+<script>
+
+    // 準備 資料酬載 (Payload)
+    var data = {email: "jason@gg", password: "9487"};
+    var encodedData = encodeFormData(data);
+
+    var payloadLen = encodedData.length;
+    var input = new Uint8Array(payloadLen);
+
+    for(var i = 0; i < payloadLen; i++) {
+        input[i] = encodedData.charCodeAt(i);
+    }
+
+    var output = pako.gzip(input);
+
+
+    // 準備請求
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    headers.append('Content-Encoding', 'gzip');
+
+    var myInit = {
+        method: 'POST',
+        headers: headers,
+        body: output
+    };
+
+    fetch('https://reqres.in/api/register', myInit)
+            .then(function (res) {
+                return res.text();
+            })
+            .then(function (data) {
+                alert("Res: \n" + data);
+            });
+
+
+    /**
+     * Encode the properties of an object as if they were name/value pairs from
+     * an HTML form, using application/x-www-form-urlencoded format
+     */
+    function encodeFormData(data) {
+        if (!data) return "";    // Always return a string
+        var pairs = [];          // To hold name=value pairs
+        for (var name in data) {                                  // For each name
+            if (!data.hasOwnProperty(name)) continue;            // Skip inherited
+            if (typeof data[name] === "function") continue;      // Skip methods
+            var value = data[name].toString();                   // Value as string
+            name = encodeURIComponent(name.replace(" ", "+"));   // Encode name
+            value = encodeURIComponent(value.replace(" ", "+")); // Encode value
+            pairs.push(name + "=" + value);   // Remember name=value pair
+        }
+        return pairs.join('&'); // Return joined pairs separated with &
+    }
+</script>
+</body>
+</html>
