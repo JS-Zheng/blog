@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Code-Line Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 10px;
+      background-color: #eee;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/code-line"></script>
+  <script>CodeLine.initOnPageLoad()</script>
+</head>
+
+<body>
+
+<h1>Code-Line.js Demo</h1>
+<div>Github: <a href="https://github.com/js-zheng/code-line">code-line</a></div>
+<div>Code from <a href="https://blog.jason.party">https://blog.jason.party</a></div>
+<br>
+<hr>
+<h2>nohighlight</h2>
+<pre style="border: 1px solid #222; padding: 10px;"><code class="nohighlight">HTTP-message   = <span
+    style="color: #2196F3;">start-line</span>
+                 <span style="color: #009688;">*( header-field CRLF )</span>
+                 <span style="color: #FFC107;">CRLF</span>
+                 <span style="color: #E91E63;">[ message-body ]</span></code></pre>
+<br>
+<hr>
+<br>
+<h2>Basic:</h2>
+<div>Code Style: <span id="select1"></span></div>
+<pre><code>public class Main {
+    public static void main(String[] args) {
+    
+        // Just a comment
+        System.out.println("Hello, World!");
+    }
+}
+
+// Result:
+// Hello, World!</code></pre>
+<br>
+<hr>
+<br>
+<h2>Soft wrap:</h2>
+<div>Code Style: <span id="select2"></span></div>
+<pre><code class="soft-wrap">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates natus iusto numquam incidunt optio libero nam consequatur ipsam mollitia tenetur?
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates natus iusto numquam incidunt optio libero nam consequatur ipsam mollitia tenetur?
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates natus iusto numquam incidunt optio libero nam consequatur ipsam mollitia tenetur?</code></pre>
+<br>
+<hr>
+<br>
+<h2>Over 100 Lines:</h2>
+<div>Code Style: <span id="select3"></span></div>
+<pre><code>public class Main {
+    public static void main(String[] args) {
+        // 實例 People 物件 -- 我
+        // 執行 空引數建構元
+        People me = new People();
+
+        // 開吃囉
+        me.eat();
+    }
+}
+
+class People {
+
+    private Stuffer stuffer;
+
+    public People() {
+        // 得到一個填充者 的實例
+        // 實際實作種類是 Hamburger
+        stuffer = new Hamburger();
+    }
+
+    public void eat() {
+        // 填飽肚子
+        stuffer.stuff();
+    }
+}
+
+interface Stuffer {
+    // 填飽肚子
+    void stuff();
+}
+
+class Hamburger implements Stuffer{
+    @Override
+    public void stuff() {
+        System.out.println("咔拉雞腿滿福堡 好棒棒");
+    }
+}
+
+// Result:
+// 咔拉雞腿滿福堡 好棒棒
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+// line 100 ~</code></pre>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/style-select"></script>
+<script>
+  var hljsStyleGroup = StyleSelect.createStyleGroup();
+  hljsStyleGroup.addStyles('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/',
+    ['agate', 'androidstudio', 'atelier-forest-light', 'atom-one-dark', 'codepen-embed', 'dracula', 'github-gist', 'hybrid', 'monokai-sublime', 'ocean', 'railscasts', 'solarized-light', 'sunburst', 'tomorrow-night', 'vs2015']
+    , true);
+  hljsStyleGroup.createSelect('#select1');
+  hljsStyleGroup.createSelect('#select2');
+  hljsStyleGroup.createSelect('#select3');
+
+  hljsStyleGroup.setDefaultStyle('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/',
+    'agate', true);
+</script>
+</body>
+</html>
