@@ -9,7 +9,7 @@ void errExit(char *reason);
 
 int main() {
 
-    char *host = "example.com"; // Server 主機
+    char *host = "example.com"; // 目標 URI
     char *PORT_NUM = "80"; // HTTP port
 
     char request[0xfff], response[0xfff]; // 請求 與 回應訊息
@@ -22,9 +22,9 @@ int main() {
     struct addrinfo hints; // hints 參數，設定 getaddrinfo() 的回傳方式
     struct addrinfo *result; // getaddrinfo() 執行結果的 addrinfo 結構指標
 
-    // 動態配置記憶體，已決定 表頭緩衝區 (Buffer) 長度
+    // 動態配置記憶體，以決定 表頭緩衝區 (Header Buffer) 長度
     size_t bufferLen = strlen(headerFmt) + strlen(host) + 1;
-    char *buffer = (char *) malloc(bufferLen);
+    char *buffer = (char *) malloc(bufferLen); // 表頭緩衝區
 
     //組裝請求訊息
     strcpy(request, requestLine);
@@ -35,7 +35,6 @@ int main() {
     // 釋放緩衝區記憶體
     free(buffer);
     buffer = NULL;
-
 
     // 以 memset 清空 hints 結構
     memset(&hints, 0, sizeof(struct addrinfo));
@@ -54,14 +53,13 @@ int main() {
 
     // 以 socket 檔案描述符 (cfd), addr, addrlen 進行連線
     // 其中，result->ai_addr 為 gai 取得之 通用 socket 位址結構 -- sockaddr
-    if (connect(cfd, result->ai_addr, result->ai_addrlen) < 0) {
+    if (connect(cfd, result->ai_addr, result->ai_addrlen) < 0)
         errExit("Connect");
-    }
+
 
     // 釋放 getaddrinfo (Linked List) 記憶體空間
     freeaddrinfo(result);
     result = NULL;
-
 
     // 格式化輸出請求訊息
     printf("----------\nRequest:\n----------\n%s\n", request);
